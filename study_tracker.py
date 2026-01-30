@@ -1,34 +1,37 @@
-# Day 2: Data Structures & Basic Stats
+# Day 2: Interactive Data Tracker
 
-# 1. DATA: A dictionary representing daily study hours
-study_data = {
-    "Monday": 2,
-    "Tuesday": 3,
-    "Wednesday": 0, # Slacking off!
-    "Thursday": 4,
-    "Friday": 1,
-    "Saturday": 5,
-    "Sunday": 2
-}
+print("--- 📊 Weekly Study Tracker 📊 ---")
+print("Enter your study hours for each day:")
 
-# 2. EXTRACT: Get just the numbers (values) from the dictionary
+# 1. SETUP: List of days to ask about
+days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+study_data = {} # Empty dictionary to store answers
+
+# 2. INPUT LOOP: Ask the user for each day
+for day in days:
+    # Ask the question
+    user_input = input(f"How many hours on {day}? ")
+    
+    # CONVERT: Text -> Decimal Number (Float)
+    hours = float(user_input)
+    
+    # STORE: Put it in the dictionary
+    study_data[day] = hours
+
+# 3. CALCULATE
 hours_list = list(study_data.values())
-
-# 3. CALCULATE: Find the Average (Mean)
-# Math: Total Sum / Number of Days
 total_hours = sum(hours_list)
-num_days = len(hours_list)
-average_hours = total_hours / num_days
+average_hours = total_hours / len(hours_list)
 
-# 4. REPORT: Print the results
-print("--- Study Analysis ---")
+# 4. REPORT
+print("\n--- 📈 Your Report ---")
 print(f"Total Hours: {total_hours}")
-print(f"Average Hours per Day: {average_hours:.2f}")
+print(f"Average: {average_hours:.2f} hours/day")
 
-# 5. LOGIC: Simple feedback
-if average_hours > 3:
-    print("Rating: Hardworking! 🚀")
-elif average_hours > 1:
-    print("Rating: Consistent. Keep it up. 👍")
+# 5. LOGIC
+if average_hours >= 4:
+    print("Rating: 🔥 ML Engineer Mode! (Excellent)")
+elif average_hours >= 2:
+    print("Rating: ✅ Consistent. (Good)")
 else:
-    print("Rating: You need to study more! ⚠️")
+    print("Rating: ⚠️ You need to push harder!")
